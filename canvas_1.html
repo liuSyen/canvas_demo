@@ -1,0 +1,31 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘冰见
+ * @Date: 2021-02-20 14:23:01
+ * @LastEditors: 刘冰见
+ * @LastEditTime: 2021-02-20 14:26:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="mycanvas" width="600" height="600"></canvas>
+</body>
+</html>
+<script>
+    let canvas = document.getElementById('mycanvas');
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'red'
+    let left = 100
+    setInterval(function () {
+        ctx.clearRect(0,0, 600, 600)
+        left++
+        ctx.fillRect(left, 100, 100, 100)
+    }, 30)
+</script>

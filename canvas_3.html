@@ -1,0 +1,88 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘冰见
+ * @Date: 2021-02-20 14:45:10
+ * @LastEditors: 刘冰见
+ * @LastEditTime: 2021-02-20 15:49:25
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button id="btn">清除小球</button>
+    </div>
+    <canvas id="mycanvas" width="800" height="600"></canvas>
+    <style>
+        canvas {
+            background-color: #ccc;
+        }
+    </style>
+</body>
+</html>
+<script>
+    let canvas = document.getElementById('mycanvas');
+    let ctx = canvas.getContext('2d');
+    var btn = document.getElementById('btn')
+    btn.onclick = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    function Ball(x, y, r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.c = getRandomColor();
+        this.dx = parseInt(Math.random() * 10) - 5;
+        this.dy = parseInt(Math.random() * 10) - 5;
+        ballArr.push(this);
+    }
+    Ball.prototype.render = function () {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false)
+        ctx.fillStyle=this.c;
+        ctx.fill()
+        
+    }
+    Ball.prototype.update = function () {
+        this.x += this.dx;
+        this.y += this.dy;
+        this.r -= 0.3;
+        if (this.r < 0) {
+            this.remove()
+        }
+    }
+    Ball.prototype.remove = function () {
+        for(var i = 0; i< ballArr.length; i++) {
+            if(ballArr[i] == this) {
+                ballArr.splice(i, 1)
+            }
+        }
+    }
+    canvas.addEventListener('mousemove', function (event) {
+        new Ball(event.offsetX, event.offsetY, 30)
+    })
+    var ballArr = []
+    setInterval(function () {
+        ctx.clearRect(0,0, canvas.width, canvas.height)
+        for(let i = 0; i< ballArr.length; i++) {
+            ballArr[i].update()
+            if (ballArr[i]) ballArr[i].render()
+        }
+    },30)
+    function getRandomColor() {
+        var allType = '0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f'
+        var allTypeArr = allType.split(',');
+        var color = '#'
+        for(let i = 0; i< 6; i++) {
+            var random = parseInt(Math.random() * allTypeArr.length);
+            color += allTypeArr[random]
+        }
+        return color
+    }
+</script>
