@@ -1,0 +1,47 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘冰见
+ * @Date: 2021-04-22 17:49:18
+ * @LastEditors: 刘冰见
+ * @LastEditTime: 2021-04-22 18:21:25
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id='monopoly'></canvas>
+</body>
+<script>
+    const canvas = document.getElementById('monopoly')
+    const ctx = canvas.getContext('2d')
+
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
+    const img = document.createElement('img')
+    img.src = 'https://cdn.iyoubei.cn/dist/ACTIVITY/certificate/2021/03/05/3974ef3e-02da-4d8a-8c79-7c8eecd10e90'
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+    
+    const img_1 = document.createElement('img')
+    img_1.src = 'https://cdn.iyoubei.cn/dist/ACTIVITY/certificate/2020/10/20/2b37acaa-85d0-40d5-8b27-0577f027de2e'
+    img_1.onload = function () {
+        ctx.drawImage(img_1,0, 0, 140, 200, 0, 90, 100, 100);
+        ctx.drawImage(img_1,0, 200, 140, 200, 0, 200, 100, 100);
+    }
+    
+</script>
+</html>
